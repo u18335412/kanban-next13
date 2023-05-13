@@ -1,0 +1,48 @@
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Column {
+  id        String  @id @default(uuid())
+  title     String
+  board_id  String
+  task      Task[]
+  board     Board   @relation(fields: [board_id], references: [id], onDelete: Cascade)
+  taskOrder String?
+
+  @@index([board_id])
+}
+
+model Board {
+  id          String   @id @default(uuid())
+  title       String
+  columnOrder String?
+  Column      Column[]
+}
+
+model Task {
+  id          String     @id @default(uuid())
+  title       String
+  description String
+  column_id   String
+  column      Column     @relation(fields: [column_id], references: [id], onDelete: Cascade)
+  Sub_Task    Sub_Task[]
+
+  @@index([column_id])
+}
+
+model Sub_Task {
+  id       String   @id @default(uuid())
+  title    String
+  task_id  String
+  complete Boolean? @default(false)
+  task     Task     @relation(fields: [task_id], references: [id], onDelete: Cascade)
+
+  @@index([task_id])
+}
