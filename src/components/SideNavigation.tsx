@@ -4,13 +4,14 @@ import Image from "next/image";
 import boardImage from "@/assets/icon-board.svg";
 import { SideNavigationLink } from "./SideNavigationLink";
 import { ThemeToggle } from "./ThemeToggle";
+import { HideSidebar } from "./SidebarToggle";
 
 export const SideNavigation = async () => {
   const boards = await prisma.board.findMany();
   return (
     <div className="h-full w-[18.75rem] bg-dark-grey border-r border-lines-dark flex flex-col">
       <nav>
-        <div className=" px-[2.125rem] py-8">
+        <div className="px-[2.125rem] py-8">
           <Logo />
         </div>
         <div className="mt-4 ">
@@ -51,6 +52,7 @@ export const SideNavigation = async () => {
       </nav>
       <div className="px-6 mt-auto">
         <ThemeToggle />
+        <HideSidebar />
       </div>
     </div>
   );

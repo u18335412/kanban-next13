@@ -13,8 +13,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
           task: {
             include: {
               Sub_Task: true,
-            }
-          }
+            },
+          },
         },
       },
     },
@@ -23,13 +23,13 @@ export default async function Page({ params }: { params: { slug: string } }) {
   return (
     <div className="h-full w-full max-w-[calc(100vw-300px)]">
       <div className="flex items-center w-full px-6 py-5 border-b border-l border-lines-dark bg-dark-grey">
-        <h2 className="text-xl font-bold text-white">{board.title}</h2>
+        <h2 className="text-xl font-bold text-white">{board?.title}</h2>
         <div className="ml-auto ">
           <Button className="px-6">+ Add New Task</Button>
         </div>
       </div>
       <div className="w-full bg-very-dark-grey">
-        <Board columns={board.Column} />
+        <Board columns={board?.Column} />
       </div>
     </div>
   );

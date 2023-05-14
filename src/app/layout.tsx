@@ -6,10 +6,12 @@ const font = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
 import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { SideNavigation } from "@/components/SideNavigation";
+import { ShowSidebar } from "@/components/SidebarToggle";
+
 
 export const metadata = {
   title: "Kanban Board - Next13",
-  description: "Kanban Board app using Next.js 13 app directory.",
+  description: "Kanban Board app using Next.js 13 /app directory.",
 };
 
 export default function RootLayout({
@@ -26,6 +28,7 @@ export default function RootLayout({
               <Suspense fallback={<LoadingSpinner />}>
                 {/* @ts-expect-error Async Server Component */}
                 <SideNavigation />
+                <ShowSidebar />
               </Suspense>
             </div>
             {children}
