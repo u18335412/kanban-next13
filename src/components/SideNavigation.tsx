@@ -1,13 +1,13 @@
-import prisma from "@/lib/prisma";
 import { Logo } from "./Logo";
 import Image from "next/image";
 import boardImage from "@/assets/icon-board.svg";
 import { SideNavigationLink } from "./SideNavigationLink";
 import { ThemeToggle } from "./ThemeToggle";
 import { HideSidebar } from "./SidebarToggle";
+import { getAllBoards } from "@/lib/board";
 
 export const SideNavigation = async () => {
-  const boards = await prisma.board.findMany();
+  const boards = await getAllBoards();
   return (
     <div className="h-full w-[18.75rem] bg-dark-grey border-r border-lines-dark flex flex-col">
       <nav>
